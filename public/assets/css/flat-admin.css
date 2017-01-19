@@ -5447,7 +5447,6 @@ ui-view>.app-messaging-container {
     padding: 0;
     background-color: #f0f4f5;
     border-bottom: 0;
-    overflow-x: scroll;
     overflow-y: visible;
 }
 
@@ -8104,4 +8103,12 @@ footer.app-footer .footer-copyright {
 
 .media.social-post .media-body .media-comment input {
     padding: 7.5px 15px;
+}
+
+.noresize {
+  resize: none;
+}
+
+.form-footer {
+    margin-top: 30px;
 }

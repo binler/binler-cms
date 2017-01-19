@@ -7,7 +7,7 @@
 class Controller_Base extends Controller_Template
 {
 
-    public $template = 'admin/template.tpl';
+    public $template = 'backend/template.tpl';
 
     /**
      * Before function

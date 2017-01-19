@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-01-18 15:21:40
+/* Smarty version 3.1.31, created on 2017-01-19 10:32:41
   from "/media/sf_sitenew/b-cms/fuel/app/views/admin/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_587f2594ced697_79500669',
+  'unifunc' => 'content_5880335948ca99_04070974',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '71ccc2fc8529e6c1cc26737758cd3f2fcd0da9ef' => 
     array (
       0 => '/media/sf_sitenew/b-cms/fuel/app/views/admin/index.tpl',
-      1 => 1484727691,
+      1 => 1484796636,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_587f2594ced697_79500669 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5880335948ca99_04070974 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -33,7 +33,6 @@ function content_587f2594ced697_79500669 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </a>
-
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-blue-light">
@@ -45,7 +44,6 @@ function content_587f2594ced697_79500669 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </a>
-
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-yellow-light">
@@ -57,7 +55,6 @@ function content_587f2594ced697_79500669 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </div>
         </a>
-
     </div>
 </div>
 <?php }

@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {render('admin/partial/head.tpl')}
+    {render('backend/partial/head.tpl')}
 </head>
 <body>
     <div class="app app-default">
         <!-- Sidebar  -->
-        {render('admin/partial/sidebar.tpl')}
+        {render('backend/partial/sidebar.tpl')}
         <!-- End Sidebar -->
 
         <!-- App container -->
         <div class="app-container">
 
             <!-- Navbar -->
-            {render('admin/partial/navbar.tpl')}
+            {render('backend/partial/navbar.tpl')}
             <!-- End Navbar -->
 
             <!-- Content -->
-            {$content}
+            <div class="row">
+                {$content}
+            </div>
             <!-- End Content -->
 
             <!-- Floating -->
-            {render('admin/partial/float.tpl')}
+            {render('backend/partial/float.tpl')}
             <!-- End Floating -->
 
             <!-- Footer -->
-            {render('admin/partial/footer.tpl')}
+            {render('backend/partial/footer.tpl')}
             <!-- End Footer -->
 
         </div>
@@ -35,5 +37,6 @@
 
 {asset_js refs='vendor.js' attrs=[]}
 {asset_js refs='app.js' attrs=[]}
+{asset_js refs='admin.js' attrs=[]}
 </body>
 </html>

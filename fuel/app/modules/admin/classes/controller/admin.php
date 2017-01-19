@@ -6,12 +6,14 @@ namespace Admin;
  */
 class Controller_Admin extends \Controller_Base
 {
-
-    public static $name_cms  = 'Binler CMS';
-
+    /**
+     * View Dashboard
+     *
+     */
     public function action_index()
-    {
+    {        
         $this->template->title = 'Bảng điều khiển';
-        $this->template->content = \View_Smarty::forge('admin/index.tpl');
+        $this->template->content = \View_Smarty::forge('backend/admin/index.tpl');
     }
+
 }
