@@ -37,6 +37,7 @@
 
 {asset_js refs='vendor.js' attrs=[]}
 {asset_js refs='app.js' attrs=[]}
+{asset_js refs='bootbox.min.js' attrs=[]}
 {asset_js refs='admin.js' attrs=[]}
 </body>
 </html>

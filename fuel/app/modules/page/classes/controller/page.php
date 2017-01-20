@@ -9,9 +9,21 @@ class Controller_Page extends \Controller_Base
 
     public function action_index()
     {
-        $this->template->pages = \Model_Page::find('all');
+        $all_page = \Model_Page::find('all', array(
+            'order_by' => array('created_at' => 'desc'),
+        ));
+        $this->template->pages = $all_page;
         $this->template->title = 'Quản lý trang';
         $this->template->content = \View_Smarty::forge('backend/page/index.tpl');
+    }
+
+    /**
+     * Delete page
+     * @return JSON
+     */
+    public function post_index()
+    {
+        
     }
 
     /**
@@ -20,38 +32,37 @@ class Controller_Page extends \Controller_Base
      */
     public function action_create()
     {
-        // create page
-        if(\Input::method() == 'POST')
+        $this->template->title = 'Tạo trang';
+        $this->template->content = \View_Smarty::forge('backend/page/create.tpl');
+    }
+
+    public function post_create()
+    {
+        $result = array();
+        if(! \Security::check_token())
         {
-            $result = array();
-            if(! \Security::check_token())
+            $result = array(
+                'status' => false,
+                'error' => 'CSRF Attack'
+            );
+        } else
+        {
+            $val = \Model_Page::validate('create');
+            if(!$val->run())
             {
                 $result = array(
                     'status' => false,
-                    'error' => 'CSRF Attack'
+                    'error' => $val->error_message()
                 );
             } else
             {
-                $val = \Model_Page::validate('create');
-                if(!$val->run())
-                {
-                    $result = array(
-                        'status' => false,
-                        'error' => $val->error_message()
-                    );
-                } else
-                {
-                    $data = \Input::post();
-                    $result['status'] = $this->__save_page($data);
-                }
-
+                $data = \Input::post();
+                $result['status'] = $this->__save_page($data);
             }
 
-            return \Format::forge($result)->to_json();
         }
 
-        $this->template->title = 'Tạo trang';
-        $this->template->content = \View_Smarty::forge('backend/page/create.tpl');
+        return \Format::forge($result)->to_json();
     }
 
     /**
@@ -64,6 +75,25 @@ class Controller_Page extends \Controller_Base
         $page = \Model_Page::forge($data);
         $status = $page->save();
         return $status;
+    }
+
+    /**
+     * Dummy data
+     * @return [type] [description]
+     */
+    public function action_test()
+    {
+        $faker = \Faker\Factory::create('vi_VN');
+        for ($i=0; $i < 10; $i++) {
+          $page = \Model_Page::forge(array(
+              'page_title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+              'page_description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+              'page_content' => $faker->text,
+              'page_status' => $faker->numberBetween($min = 0, $max = 1)
+          ));
+          $page->save();
+        }
+        return \Response::redirect('admin/page');
     }
 
 }
