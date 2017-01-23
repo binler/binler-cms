@@ -23,7 +23,22 @@ class Controller_Page extends \Controller_Base
      */
     public function post_index()
     {
-        
+        $page_id = \Input::post('page_id');
+        $status = array();
+        foreach ($page_id as $item) {
+            $page = \Model_Page::find($item);
+            $status = $page->delete();
+            if(!$status)
+            {
+                $status = array(
+                    'status' => false,
+                    'message' => 'Có lỗi trong quá trình xử lý'
+                );
+                break;
+            }
+        }
+        $status = array('status' => true);
+        return $status;
     }
 
     /**

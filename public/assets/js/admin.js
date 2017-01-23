@@ -74,17 +74,19 @@ $(document).ready(function(e) {
                 }
             },
             callback: function(result) {
-                // if (result) {
-                //     $.ajax({
-                //         type: 'POST',
-                //         url: form.attr('action'),
-                //         dataType: 'JSON',
-                //         data: form.serialize(),
-                //         success: function(re) {
-                //             console.log(re);
-                //         }
-                //     });
-                // }
+                if (result) {
+                    $.ajax({
+                        type: 'POST',
+                        url: form.attr('action'),
+                        dataType: 'JSON',
+                        data: form.serialize(),
+                        success: function(res) {
+                            if (res) {
+                                location.reload();
+                            }
+                        }
+                    });
+                }
             }
         });
     }
