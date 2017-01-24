@@ -52,11 +52,11 @@
                             </td>
                             <td>{$item.created_at|date_format: "Ngày %d Tháng %m  Năm %Y"}</td>
                             <td>
-                                <a href="/admin/page/create" class="btn btn-info">
+                                <a href="{('/admin/page/view/'|cat: $item.id)}" class="btn btn-info">
                                     <i class="fa fa-plus"></i>
                                     <span class="title">Xem</span>
                                 </a>
-                                <a href="/admin/page/create" class="btn btn-warning">
+                                <a href="{('/admin/page/edit/'|cat: $item.id)}" class="btn btn-warning">
                                     <i class="fa fa-plus"></i>
                                     <span class="title">Sửa</span>
                                 </a>

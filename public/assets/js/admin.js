@@ -6,7 +6,10 @@ $(document).ready(function(e) {
     $("body").on("click", ".submit_form", function(e) {
         e.preventDefault();
         var btn = $(this),
-            form = btn.closest('form');
+            form = btn.closest('form'),
+            token = $('[name="b_csrf_token"]');
+
+        token.val(fuel_csrf_token());
         // save tinymce editor
         tinymce.triggerSave();
         $.ajax({
@@ -15,7 +18,11 @@ $(document).ready(function(e) {
             dataType: 'JSON',
             data: form.serialize(),
             success: function(result) {
-                console.log(result);
+                if(result.status){
+                    $( location ).attr("href", result.back);
+                } else {
+                    show_error(result.error);
+                }
             }
         });
     });
@@ -49,7 +56,7 @@ $(document).ready(function(e) {
             form = btn.closest('.card').find('form'),
             page_select = $(form).find('input[class="page_id"]');
         var confirm = check_select_record(page_select);
-        if(confirm){
+        if (confirm) {
             delete_record(form);
         }
 
@@ -81,7 +88,7 @@ $(document).ready(function(e) {
                         dataType: 'JSON',
                         data: form.serialize(),
                         success: function(res) {
-                            if (res) {
+                            if (res.status) {
                                 location.reload();
                             }
                         }
@@ -96,15 +103,26 @@ $(document).ready(function(e) {
      * @param  {[type]} page_select array input checkbox
      * @return Bool
      */
-    function check_select_record(page_select)
-    {
+    function check_select_record(page_select) {
         for (var i = 0; i < page_select.length; i++) {
-            if ($(page_select[i]).is(':checked')){
+            if ($(page_select[i]).is(':checked')) {
                 return true;
                 break;
             }
         }
         return false;
+    }
+
+    function show_error(errors)
+    {
+        var form = $('body').find('form.form-curd');
+        for(var key in errors){
+            var el = form.find('[name="' + key + '"]').parent();
+            if(!el.hasClass('has-error')){
+                el.addClass('has-error');
+                el.append( '<span class="help-block">' + errors[key] + '</span>' );
+            }
+        }
     }
 
 });

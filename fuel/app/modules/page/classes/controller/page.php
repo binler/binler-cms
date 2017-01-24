@@ -38,7 +38,7 @@ class Controller_Page extends \Controller_Base
             }
         }
         $status = array('status' => true);
-        return $status;
+        return \Format::forge($status)->to_json();
     }
 
     /**
@@ -72,7 +72,8 @@ class Controller_Page extends \Controller_Base
             } else
             {
                 $data = \Input::post();
-                $result['status'] = $this->__save_page($data);
+                $result['status'] = $this->__create_page($data);
+                $result['back'] = \Router::get('index_page');
             }
 
         }
@@ -85,7 +86,7 @@ class Controller_Page extends \Controller_Base
      * @param  array  $data data page to save
      * @return Bool
      */
-    private function __save_page($data = array())
+    private function __create_page($data = array())
     {
         $page = \Model_Page::forge($data);
         $status = $page->save();
@@ -109,6 +110,53 @@ class Controller_Page extends \Controller_Base
           $page->save();
         }
         return \Response::redirect('admin/page');
+    }
+
+    /**
+     * View page edit page
+     * @param  [type] $id id of page
+     * @return View
+     */
+    public function action_edit($id = null)
+    {
+        $page = \Model_Page::find($id);
+        (!$page) and \Response::redirect('admin/page');
+        if(\Input::method() == 'POST')
+        {
+            return $this->__page_edit($page);
+        }
+        $this->template->title = 'Chỉnh sửa trang';
+        $this->template->page = $page;
+        $this->template->content = \View_Smarty::forge('backend/page/edit.tpl');
+    }
+
+    private function __page_edit($page)
+    {
+        $result = array();
+        if(! \Security::check_token())
+        {
+            $result = array(
+                'status' => false,
+                'error' => 'CSRF Attack'
+            );
+        } else
+        {
+            $val = \Model_Page::validate('edit');
+            if(!$val->run())
+            {
+                $result = array(
+                    'status' => false,
+                    'error' => $val->error_message()
+                );
+            } else
+            {
+                $page->set(\Input::post());
+                $result['status'] = $page->save();
+                $result['back'] = \Router::get('index_page');
+            }
+
+        }
+        return \Format::forge($result)->to_json();
     }
 
 }
