@@ -9,6 +9,6 @@
 <title>{$title|cat: ' | '|cat: Config::get('cms_name')}</title>
 <script type="text/javascript">
     $(window).load(function() {
-        // $(".loading-page").hide();
+        $("#loader").fadeOut(1000);
     });
 </script>
