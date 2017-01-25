@@ -34,7 +34,6 @@ class Model_Page extends \Orm\Model
 	{
 		$val = Validation::forge($factory);
 		$val->add_field('page_title', 'Title', 'required|max_length[255]');
-		$val->add_field('page_content', 'Content', 'required');
 
 		return $val;
 	}

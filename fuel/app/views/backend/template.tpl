@@ -4,6 +4,10 @@
     {render('backend/partial/head.tpl')}
 </head>
 <body>
+    <!-- LOADER START -->
+    <div id="loader">
+        <div id="loading-status"></div><!-- .loading-status end -->
+    </div><!-- #loader end -->
     <div class="app app-default">
         <!-- Sidebar  -->
         {render('backend/partial/sidebar.tpl')}

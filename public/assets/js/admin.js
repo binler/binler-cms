@@ -1,12 +1,14 @@
 "use strict";
 
-$(document).ready(function(e) {
-
+$(document).ready(function(e) {    
     // submit form
     $("body").on("click", ".submit_form", function(e) {
         e.preventDefault();
         var btn = $(this),
-            form = btn.closest('form');
+            form = btn.closest('form'),
+            token = $('[name="b_csrf_token"]');
+
+        token.val(fuel_csrf_token());
         // save tinymce editor
         tinymce.triggerSave();
         $.ajax({
@@ -15,7 +17,11 @@ $(document).ready(function(e) {
             dataType: 'JSON',
             data: form.serialize(),
             success: function(result) {
-                console.log(result);
+                if (result.status) {
+                    $(location).attr("href", result.back);
+                } else {
+                    show_error(result.error);
+                }
             }
         });
     });
@@ -104,6 +110,17 @@ $(document).ready(function(e) {
             }
         }
         return false;
+    }
+
+    function show_error(errors) {
+        var form = $('body').find('form.form-curd');
+        for (var key in errors) {
+            var el = form.find('[name="' + key + '"]').parent();
+            if (!el.hasClass('has-error')) {
+                el.addClass('has-error');
+                el.append('<span class="help-block">' + errors[key] + '</span>');
+            }
+        }
     }
 
 });
