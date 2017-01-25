@@ -1,7 +1,6 @@
 "use strict";
 
-$(document).ready(function(e) {
-
+$(document).ready(function(e) {    
     // submit form
     $("body").on("click", ".submit_form", function(e) {
         e.preventDefault();
@@ -18,8 +17,8 @@ $(document).ready(function(e) {
             dataType: 'JSON',
             data: form.serialize(),
             success: function(result) {
-                if(result.status){
-                    $( location ).attr("href", result.back);
+                if (result.status) {
+                    $(location).attr("href", result.back);
                 } else {
                     show_error(result.error);
                 }
@@ -113,14 +112,13 @@ $(document).ready(function(e) {
         return false;
     }
 
-    function show_error(errors)
-    {
+    function show_error(errors) {
         var form = $('body').find('form.form-curd');
-        for(var key in errors){
+        for (var key in errors) {
             var el = form.find('[name="' + key + '"]').parent();
-            if(!el.hasClass('has-error')){
+            if (!el.hasClass('has-error')) {
                 el.addClass('has-error');
-                el.append( '<span class="help-block">' + errors[key] + '</span>' );
+                el.append('<span class="help-block">' + errors[key] + '</span>');
             }
         }
     }
