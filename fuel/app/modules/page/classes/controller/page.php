@@ -7,6 +7,11 @@ namespace Page;
 class Controller_Page extends \Controller_Base
 {
 
+    /**
+     * View index page, list all page
+     *
+     * @return View
+     */
     public function action_index()
     {
         $all_page = \Model_Page::find('all', array(
@@ -38,7 +43,7 @@ class Controller_Page extends \Controller_Base
             }
         }
         $status = array('status' => true);
-        return $status;
+        return \Format::forge($status)->to_json();
     }
 
     /**
@@ -51,6 +56,11 @@ class Controller_Page extends \Controller_Base
         $this->template->content = \View_Smarty::forge('backend/page/create.tpl');
     }
 
+    /**
+     * Create page
+     *
+     * @return Json
+     */
     public function post_create()
     {
         $result = array();

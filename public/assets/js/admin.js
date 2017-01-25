@@ -49,7 +49,7 @@ $(document).ready(function(e) {
             form = btn.closest('.card').find('form'),
             page_select = $(form).find('input[class="page_id"]');
         var confirm = check_select_record(page_select);
-        if(confirm){
+        if (confirm) {
             delete_record(form);
         }
 
@@ -81,7 +81,7 @@ $(document).ready(function(e) {
                         dataType: 'JSON',
                         data: form.serialize(),
                         success: function(res) {
-                            if (res) {
+                            if (res.status) {
                                 location.reload();
                             }
                         }
@@ -96,10 +96,9 @@ $(document).ready(function(e) {
      * @param  {[type]} page_select array input checkbox
      * @return Bool
      */
-    function check_select_record(page_select)
-    {
+    function check_select_record(page_select) {
         for (var i = 0; i < page_select.length; i++) {
-            if ($(page_select[i]).is(':checked')){
+            if ($(page_select[i]).is(':checked')) {
                 return true;
                 break;
             }
