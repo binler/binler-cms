@@ -1,6 +1,12 @@
 "use strict";
 
-$(document).ready(function(e) {    
+$(window).on("load", function() {
+    // Loader
+    $("#loading-status").delay(300).fadeOut();
+    $("#loader").delay(700).fadeOut("slow");
+});
+
+$(document).ready(function(e) {
     // submit form
     $("body").on("click", ".submit_form", function(e) {
         e.preventDefault();

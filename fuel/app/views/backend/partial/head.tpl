@@ -7,8 +7,3 @@
 {asset_js refs='jquery.min.js'}
 <script>tinymce.init({ selector:'textarea#editor_content', height: '400', resize: false });</script>
 <title>{$title|cat: ' | '|cat: Config::get('cms_name')}</title>
-<script type="text/javascript">
-    $(window).load(function() {
-        $("#loader").fadeOut(1000);
-    });
-</script>
