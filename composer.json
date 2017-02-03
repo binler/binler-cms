@@ -18,7 +18,8 @@
         "phpseclib/phpseclib": "2.0.0",
         "michelf/php-markdown": "1.4.0",
         "smarty/smarty": "3.*",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "facebook/graph-sdk": "^5.4"
     },
     "suggest": {
         "dwoo/dwoo" : "Allow Dwoo templating with the Parser package",

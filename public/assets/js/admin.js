@@ -7,6 +7,7 @@ $(window).on("load", function() {
 });
 
 $(document).ready(function(e) {
+
     // submit form
     $("body").on("click", ".submit_form", function(e) {
         e.preventDefault();
@@ -27,6 +28,24 @@ $(document).ready(function(e) {
                     $(location).attr("href", result.back);
                 } else {
                     show_error(result.error);
+                }
+            }
+        });
+    });
+
+    // submit form login
+    $("body").on('submit', '.form_login', function(){
+        var form = $(this);
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            dataType: 'JSON',
+            data: form.serialize(),
+            success: function(result) {
+                if (result.status) {
+                    $(location).attr("href", result.redirect);
+                } else {
+                    alert(result.message);
                 }
             }
         });

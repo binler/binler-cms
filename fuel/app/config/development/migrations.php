@@ -6,7 +6,7 @@ return array(
     array(
       'default' => 
       array(
-        0 => '001_create_pages',
+        0 => '002_create_users',
       ),
     ),
     'module' => 
