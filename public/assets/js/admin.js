@@ -11,7 +11,7 @@ $(document).ready(function(e) {
     tinymce.init({
         menubar: false,
         selector: 'textarea#editor_content',
-        // skin: 'voyager',
+        // skin: 'binler',
         plugins: 'link, image, code',
         extended_valid_elements: 'input[onclick|value|style|type]',
         // file_browser_callback: function(field_name, url, type, win) {
