@@ -8,6 +8,25 @@ $(window).on("load", function() {
 
 $(document).ready(function(e) {
 
+    tinymce.init({
+        menubar: false,
+        selector: 'textarea#editor_content',
+        // skin: 'voyager',
+        plugins: 'link, image, code',
+        extended_valid_elements: 'input[onclick|value|style|type]',
+        // file_browser_callback: function(field_name, url, type, win) {
+        //     if (type == 'image') {
+        //         $('#upload_file').trigger('click');
+        //     }
+        // },
+        toolbar: 'styleselect bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image | code',
+        convert_urls: false,
+        image_caption: true,
+        image_title: true,
+        height: '400',
+        resize: false
+    });
+
     // submit form
     $("body").on("click", ".submit_form", function(e) {
         e.preventDefault();
@@ -34,7 +53,7 @@ $(document).ready(function(e) {
     });
 
     // submit form login
-    $("body").on('submit', '.form_login', function(){
+    $("body").on('submit', '.form_login', function() {
         var form = $(this);
         $.ajax({
             type: 'POST',

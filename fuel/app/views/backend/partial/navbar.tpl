@@ -156,9 +156,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">
-                  Logout
-                </a>
+                {html_anchor href=Router::get('logout') text="Logout"}
               </li>
             </ul>
           </div>

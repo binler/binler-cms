@@ -12,15 +12,32 @@ class Controller_Admin extends \Controller_Base
      */
     public function action_index()
     {
+        $this->template->total_page = \Model_Page::count();
         $this->template->title = 'Bảng điều khiển';
         $this->template->content = \View_Smarty::forge('backend/admin/index.tpl');
     }
 
+    /**
+     * View login page and check logined
+     *
+     */
     public function action_login()
     {
+        // check logined
+        if (\Auth::check())
+        {
+            \Response::redirect(\Router::get('dashboard'));
+        }
         $data['title'] = 'Đăng nhập';
         $data['cms_name'] = \Config::get('cms_name');
         return \View_Smarty::forge('backend/admin/login.tpl', $data);
+    }
+
+    //
+    public function action_logout()
+    {
+        \Auth::logout();
+        \Response::redirect(\Router::get('login'));
     }
 
     public function post_login()

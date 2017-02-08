@@ -57,7 +57,7 @@
                                     <span class="title">Xem</span>
                                 </a>
                                 <a href="{('/admin/page/edit/'|cat: $item.id)}" class="btn btn-warning">
-                                    <i class="fa fa-plus"></i>
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
                                     <span class="title">Sửa</span>
                                 </a>
                             </td>

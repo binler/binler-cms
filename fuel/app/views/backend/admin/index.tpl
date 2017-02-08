@@ -3,8 +3,8 @@
         <div class="card-body">
             <i class="icon fa fa-shopping-basket fa-4x"></i>
             <div class="content">
-                <div class="title">Sale Today</div>
-                <div class="value"><span class="sign">$</span>420</div>
+                <div class="title">Số trang</div>
+                <div class="value"><span class="sign"></span>{$total_page}</div>
             </div>
         </div>
     </a>
